@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Awtad Educational System - Warm Earth Tones */
+    --background: 45 30% 88%;
+    --foreground: 30 20% 15%;
+
+    --card: 45 40% 96%;
+    --card-foreground: 30 20% 15%;
+
+    --popover: 45 40% 96%;
+    --popover-foreground: 30 20% 15%;
+
+    /* Warm Brown Primary */
+    --primary: 32 43% 49%;
+    --primary-foreground: 45 40% 98%;
+
+    /* Darker Brown Secondary */
+    --secondary: 32 40% 31%;
+    --secondary-foreground: 45 40% 98%;
+
+    /* Light Beige */
+    --muted: 35 30% 85%;
+    --muted-foreground: 30 20% 40%;
+
+    /* Soft Green Accent */
+    --accent: 120 35% 54%;
+    --accent-foreground: 45 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 25% 80%;
+    --input: 35 25% 80%;
+    --ring: 32 43% 49%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --highlight: 35 50% 80%;
+    --neutral-light: 90 25% 78%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(32 43% 49%),
+      hsl(32 40% 31%)
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsl(45 30% 88%) 0%,
+      hsl(90 25% 78%) 100%
+    );
+    --gradient-card: linear-gradient(
+      145deg,
+      hsl(45 40% 98%) 0%,
+      hsl(35 30% 92%) 100%
+    );
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(32 43% 49% / 0.15);
+    --shadow-elevated: 0 10px 40px -10px hsl(32 43% 49% / 0.25);
+
+    --sidebar-background: 32 40% 31%;
+    --sidebar-foreground: 45 40% 98%;
+    --sidebar-primary: 32 43% 49%;
+    --sidebar-primary-foreground: 45 40% 98%;
+    --sidebar-accent: 120 35% 54%;
+    --sidebar-accent-foreground: 45 40% 98%;
+    --sidebar-border: 32 30% 40%;
+    --sidebar-ring: 32 43% 49%;
+  }
+
+  .dark {
+    --background: 30 20% 10%;
+    --foreground: 45 40% 95%;
+
+    --card: 30 20% 14%;
+    --card-foreground: 45 40% 95%;
+
+    --popover: 30 20% 14%;
+    --popover-foreground: 45 40% 95%;
+
+    --primary: 32 50% 55%;
+    --primary-foreground: 30 20% 10%;
+
+    --secondary: 32 35% 25%;
+    --secondary-foreground: 45 40% 95%;
+
+    --muted: 30 15% 20%;
+    --muted-foreground: 35 20% 65%;
+
+    --accent: 120 40% 45%;
+    --accent-foreground: 45 40% 98%;
+
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 15% 25%;
+    --input: 30 15% 25%;
+    --ring: 32 50% 55%;
+
+    --sidebar-background: 30 20% 12%;
+    --sidebar-foreground: 45 40% 95%;
+    --sidebar-primary: 32 50% 55%;
+    --sidebar-primary-foreground: 30 20% 10%;
+    --sidebar-accent: 120 40% 45%;
+    --sidebar-accent-foreground: 45 40% 98%;
+    --sidebar-border: 30 15% 25%;
+    --sidebar-ring: 32 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: "Tajawal", sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+@layer components {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Animated Underline */
+  .nav-link-animated {
+    @apply relative;
+  }
+
+  .nav-link-animated::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
+    content: "";
+  }
+
+  .nav-link-animated:hover::after {
+    @apply w-full;
+  }
+
+  /* Nav Link Slide Effect (RTL - slides from right to left) */
+  .nav-link-slide {
+    @apply relative overflow-hidden isolate;
+  }
+
+  .nav-link-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--accent));
+    z-index: -1;
+    transform: translateX(101%);
+    transition: transform 0.3s ease-out;
+  }
+
+  .nav-link-slide:hover::before {
+    transform: translateX(0);
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply backdrop-blur-md bg-card/80 border border-border/50;
+  }
+
+  /* Input Focus Animation */
+  .input-animated {
+    @apply transition-all duration-300;
+  }
+
+  .input-animated:focus {
+    @apply ring-2 ring-primary/30 border-primary;
+  }
+
+  /* Card Hover Effect */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-elevated;
+  }
+
+  /* Fade In Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out both;
+  }
+
+  /* Staggered fade-in for grid items */
+  .animate-stagger > *:nth-child(1) {
+    animation: fadeIn 0.5s ease-out 0.05s both;
+  }
+  .animate-stagger > *:nth-child(2) {
+    animation: fadeIn 0.5s ease-out 0.1s both;
+  }
+  .animate-stagger > *:nth-child(3) {
+    animation: fadeIn 0.5s ease-out 0.15s both;
+  }
+  .animate-stagger > *:nth-child(4) {
+    animation: fadeIn 0.5s ease-out 0.2s both;
+  }
+  .animate-stagger > *:nth-child(5) {
+    animation: fadeIn 0.5s ease-out 0.25s both;
+  }
+  .animate-stagger > *:nth-child(6) {
+    animation: fadeIn 0.5s ease-out 0.3s both;
+  }
+}

@@ -282,7 +282,7 @@ export default function Dashboard() {
 
       {/* Add User Modal */}
       {showAddUser && (
-        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div className="fixed inset-[-6%]  bg-foreground/60 backdrop-blur-md z-[60] flex items-center justify-center p-4">
           <div className="gradient-card rounded-xl p-6 shadow-elevated w-full max-w-md animate-fade-in">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-foreground">
@@ -330,7 +330,7 @@ export default function Dashboard() {
 
       {/* Add Assignment Modal */}
       {showAddAssignment && (
-        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div className="fixed inset-[-6%] bg-foreground/60 backdrop-blur-md z-[60] flex items-center justify-center p-4">
           <div className="gradient-card rounded-xl p-6 shadow-elevated w-full max-w-md animate-fade-in">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-foreground">
@@ -383,7 +383,7 @@ export default function Dashboard() {
 
       {/* Add Course Modal */}
       {showAddCourse && (
-        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div className="fixed inset-[-6%]  bg-foreground/60 backdrop-blur-md z-[60] flex items-center justify-center p-4">
           <div className="gradient-card rounded-xl p-6 shadow-elevated w-full max-w-md animate-fade-in">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-foreground">

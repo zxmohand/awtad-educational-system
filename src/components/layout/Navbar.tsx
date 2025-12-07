@@ -23,7 +23,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full">
+      <header className="sticky top-0 z-[50] w-full">
         <div className="mx-auto max-w-6xl px-4 pt-4">
           <nav className="gradient-primary rounded-xl shadow-elevated px-4 py-3">
             <div className="flex items-center justify-between gap-4">
@@ -34,10 +34,12 @@ export function Navbar() {
                 onClick={toggleSidebar}
                 className="text-primary-foreground hover:bg-secondary/50"
               >
-                <ChevronLeft className={cn(
-                  "h-5 w-5 transition-transform duration-300",
-                  isSidebarOpen && "rotate-180"
-                )} />
+                <ChevronLeft
+                  className={cn(
+                    "h-5 w-5 transition-transform duration-300",
+                    isSidebarOpen && "rotate-180"
+                  )}
+                />
               </Button>
 
               {/* Desktop Navigation */}
@@ -63,7 +65,11 @@ export function Navbar() {
                 onClick={toggleMobileMenu}
                 className="md:hidden text-primary-foreground hover:bg-secondary/50"
               >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </Button>
             </div>
 
@@ -94,7 +100,7 @@ export function Navbar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 right-0 h-full w-64 bg-secondary z-40 transition-transform duration-300 ease-in-out",
+          "fixed top-0 right-0 h-full w-64 bg-secondary z-[60] transition-transform duration-300 ease-in-out",
           "shadow-2xl pt-24 px-4",
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         )}
@@ -112,7 +118,7 @@ export function Navbar() {
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-30"
+          className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-[55]"
           onClick={toggleSidebar}
         />
       )}

@@ -7,9 +7,24 @@ import { toast } from "sonner";
 
 const initialStats = [
   { label: "إجمالي الطلاب", value: "1,234", icon: Users, color: "text-accent" },
-  { label: "الدورات النشطة", value: "45", icon: BookOpen, color: "text-primary" },
-  { label: "الواجبات", value: "89", icon: ClipboardList, color: "text-secondary" },
-  { label: "معدل الإنجاز", value: "87%", icon: TrendingUp, color: "text-accent" },
+  {
+    label: "الدورات النشطة",
+    value: "45",
+    icon: BookOpen,
+    color: "text-primary",
+  },
+  {
+    label: "الواجبات",
+    value: "89",
+    icon: ClipboardList,
+    color: "text-secondary",
+  },
+  {
+    label: "معدل الإنجاز",
+    value: "87%",
+    icon: TrendingUp,
+    color: "text-accent",
+  },
 ];
 
 interface User {
@@ -33,7 +48,11 @@ export default function Dashboard() {
 
   const [assignments, setAssignments] = useState<Assignment[]>([
     { title: "اختبار الرياضيات", dueDate: "2025-12-10", status: "قيد التقديم" },
-    { title: "مشروع اللغة العربية", dueDate: "2025-12-15", status: "قيد التقديم" },
+    {
+      title: "مشروع اللغة العربية",
+      dueDate: "2025-12-15",
+      status: "قيد التقديم",
+    },
     { title: "اختبار العلوم", dueDate: "2025-12-08", status: "مكتمل" },
   ]);
 
@@ -43,7 +62,10 @@ export default function Dashboard() {
   const [showAddCourse, setShowAddCourse] = useState(false);
 
   const [newUser, setNewUser] = useState({ name: "", email: "" });
-  const [newAssignment, setNewAssignment] = useState({ title: "", dueDate: "" });
+  const [newAssignment, setNewAssignment] = useState({
+    title: "",
+    dueDate: "",
+  });
   const [newCourse, setNewCourse] = useState({ title: "", description: "" });
 
   const handleAddUser = () => {
@@ -62,7 +84,10 @@ export default function Dashboard() {
       toast.error("يرجى ملء جميع الحقول");
       return;
     }
-    setAssignments([...assignments, { ...newAssignment, status: "قيد التقديم" }]);
+    setAssignments([
+      ...assignments,
+      { ...newAssignment, status: "قيد التقديم" },
+    ]);
     setNewAssignment({ title: "", dueDate: "" });
     setShowAddAssignment(false);
     toast.success("تم إضافة الاختبار بنجاح");
@@ -120,7 +145,11 @@ export default function Dashboard() {
             <h2 className="text-lg font-bold text-foreground border-b-2 border-highlight pb-2">
               إدارة المستخدمين
             </h2>
-            <Button size="sm" variant="outline" onClick={() => setShowAllUsers(!showAllUsers)}>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setShowAllUsers(!showAllUsers)}
+            >
               {showAllUsers ? "إخفاء" : "عرض الكل"}
             </Button>
           </div>
@@ -128,9 +157,15 @@ export default function Dashboard() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">الاسم</th>
-                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">البريد</th>
-                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">الحالة</th>
+                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">
+                    الاسم
+                  </th>
+                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">
+                    البريد
+                  </th>
+                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">
+                    الحالة
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -140,7 +175,9 @@ export default function Dashboard() {
                     className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                   >
                     <td className="py-3 px-2 text-foreground">{user.name}</td>
-                    <td className="py-3 px-2 text-muted-foreground">{user.email}</td>
+                    <td className="py-3 px-2 text-muted-foreground">
+                      {user.email}
+                    </td>
                     <td className="py-3 px-2">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -165,7 +202,11 @@ export default function Dashboard() {
             <h2 className="text-lg font-bold text-foreground border-b-2 border-highlight pb-2">
               الواجبات والاختبارات
             </h2>
-            <Button size="sm" variant="outline" onClick={() => setShowAddAssignment(true)}>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setShowAddAssignment(true)}
+            >
               إضافة جديد
             </Button>
           </div>
@@ -173,9 +214,15 @@ export default function Dashboard() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">العنوان</th>
-                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">الموعد</th>
-                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">الحالة</th>
+                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">
+                    العنوان
+                  </th>
+                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">
+                    الموعد
+                  </th>
+                  <th className="text-right py-3 px-2 font-medium text-muted-foreground">
+                    الحالة
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -184,8 +231,12 @@ export default function Dashboard() {
                     key={assignment.title}
                     className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                   >
-                    <td className="py-3 px-2 text-foreground">{assignment.title}</td>
-                    <td className="py-3 px-2 text-muted-foreground">{assignment.dueDate}</td>
+                    <td className="py-3 px-2 text-foreground">
+                      {assignment.title}
+                    </td>
+                    <td className="py-3 px-2 text-muted-foreground">
+                      {assignment.dueDate}
+                    </td>
                     <td className="py-3 px-2">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -207,7 +258,9 @@ export default function Dashboard() {
 
       {/* Quick Actions */}
       <div className="gradient-card rounded-xl p-6 shadow-soft animate-fade-in">
-        <h2 className="text-lg font-bold text-foreground mb-4">إجراءات سريعة</h2>
+        <h2 className="text-lg font-bold text-foreground mb-4">
+          إجراءات سريعة
+        </h2>
         <div className="flex flex-wrap gap-3">
           <Button onClick={() => setShowAddUser(true)}>
             <Users className="h-4 w-4 ml-2" />
@@ -217,7 +270,10 @@ export default function Dashboard() {
             <BookOpen className="h-4 w-4 ml-2" />
             إنشاء دورة
           </Button>
-          <Button variant="secondary" onClick={() => setShowAddAssignment(true)}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowAddAssignment(true)}
+          >
             <ClipboardList className="h-4 w-4 ml-2" />
             إنشاء اختبار
           </Button>
@@ -226,11 +282,17 @@ export default function Dashboard() {
 
       {/* Add User Modal */}
       {showAddUser && (
-        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
           <div className="gradient-card rounded-xl p-6 shadow-elevated w-full max-w-md animate-fade-in">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-foreground">إضافة مستخدم جديد</h3>
-              <Button variant="ghost" size="icon" onClick={() => setShowAddUser(false)}>
+              <h3 className="text-lg font-bold text-foreground">
+                إضافة مستخدم جديد
+              </h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowAddUser(false)}
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
@@ -240,7 +302,9 @@ export default function Dashboard() {
                 <Input
                   id="userName"
                   value={newUser.name}
-                  onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, name: e.target.value })
+                  }
                   placeholder="أدخل اسم المستخدم"
                 />
               </div>
@@ -250,7 +314,9 @@ export default function Dashboard() {
                   id="userEmail"
                   type="email"
                   value={newUser.email}
-                  onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, email: e.target.value })
+                  }
                   placeholder="أدخل البريد الإلكتروني"
                 />
               </div>
@@ -264,11 +330,17 @@ export default function Dashboard() {
 
       {/* Add Assignment Modal */}
       {showAddAssignment && (
-        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
           <div className="gradient-card rounded-xl p-6 shadow-elevated w-full max-w-md animate-fade-in">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-foreground">إضافة اختبار جديد</h3>
-              <Button variant="ghost" size="icon" onClick={() => setShowAddAssignment(false)}>
+              <h3 className="text-lg font-bold text-foreground">
+                إضافة اختبار جديد
+              </h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowAddAssignment(false)}
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
@@ -278,7 +350,12 @@ export default function Dashboard() {
                 <Input
                   id="assignmentTitle"
                   value={newAssignment.title}
-                  onChange={(e) => setNewAssignment({ ...newAssignment, title: e.target.value })}
+                  onChange={(e) =>
+                    setNewAssignment({
+                      ...newAssignment,
+                      title: e.target.value,
+                    })
+                  }
                   placeholder="أدخل عنوان الاختبار"
                 />
               </div>
@@ -288,7 +365,12 @@ export default function Dashboard() {
                   id="assignmentDate"
                   type="date"
                   value={newAssignment.dueDate}
-                  onChange={(e) => setNewAssignment({ ...newAssignment, dueDate: e.target.value })}
+                  onChange={(e) =>
+                    setNewAssignment({
+                      ...newAssignment,
+                      dueDate: e.target.value,
+                    })
+                  }
                 />
               </div>
               <Button className="w-full" onClick={handleAddAssignment}>
@@ -301,11 +383,17 @@ export default function Dashboard() {
 
       {/* Add Course Modal */}
       {showAddCourse && (
-        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
           <div className="gradient-card rounded-xl p-6 shadow-elevated w-full max-w-md animate-fade-in">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-foreground">إنشاء دورة جديدة</h3>
-              <Button variant="ghost" size="icon" onClick={() => setShowAddCourse(false)}>
+              <h3 className="text-lg font-bold text-foreground">
+                إنشاء دورة جديدة
+              </h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowAddCourse(false)}
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
@@ -315,7 +403,9 @@ export default function Dashboard() {
                 <Input
                   id="courseTitle"
                   value={newCourse.title}
-                  onChange={(e) => setNewCourse({ ...newCourse, title: e.target.value })}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, title: e.target.value })
+                  }
                   placeholder="أدخل عنوان الدورة"
                 />
               </div>
@@ -324,7 +414,9 @@ export default function Dashboard() {
                 <Input
                   id="courseDesc"
                   value={newCourse.description}
-                  onChange={(e) => setNewCourse({ ...newCourse, description: e.target.value })}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, description: e.target.value })
+                  }
                   placeholder="أدخل وصف الدورة"
                 />
               </div>

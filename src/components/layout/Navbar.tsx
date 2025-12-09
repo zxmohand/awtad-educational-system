@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronLeft, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,17 @@ const navLinks = [
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -23,9 +33,24 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-[50] w-full">
-        <div className="mx-auto max-w-6xl px-4 pt-4">
-          <nav className="gradient-primary rounded-xl shadow-elevated px-4 py-3">
+      <header
+        className={cn(
+          "sticky top-0 z-[50] w-full transition-all duration-300",
+          isScrolled && "bg-background/95 backdrop-blur-md shadow-lg"
+        )}
+      >
+        <div
+          className={cn(
+            "mx-auto max-w-6xl px-4 transition-all duration-300",
+            isScrolled ? "pt-2 pb-2" : "pt-4"
+          )}
+        >
+          <nav
+            className={cn(
+              "gradient-primary rounded-xl shadow-elevated transition-all duration-300",
+              isScrolled ? "px-4 py-4" : "px-4 py-3"
+            )}
+          >
             <div className="flex items-center justify-between gap-4">
               {/* Sidebar Toggle */}
               <Button
